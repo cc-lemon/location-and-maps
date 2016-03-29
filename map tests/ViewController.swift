@@ -13,8 +13,6 @@ import UIKit
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    
-    
     let locationMgr = CLLocationManager()
     
     override func viewDidLoad() {
@@ -36,7 +34,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
     
-    //For updating location
+    //For updating location after initial load
     @IBAction func getLocation(sender: UIButton) {
         locationMgr.requestWhenInUseAuthorization()
         locationMgr.desiredAccuracy = kCLLocationAccuracyBest
@@ -60,9 +58,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let location2 = CLLocationCoordinate2DMake(59.319197, 18.05355)
         let location3 = CLLocationCoordinate2DMake(59.317993, 18.04754)
         
-        
-        
-    
+        //Defines
         let annotation = MKPointAnnotation()
         annotation.coordinate = location1
         annotation.title = "Söder test 1"
@@ -79,19 +75,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         annotation3.title = "Söder test 3"
         annotation3.subtitle = ""
 
-        
-        
+        //Calls the built-in functions addAnnotation, setRegion and stopUpdating
         mapView.addAnnotation(annotation)
         mapView.addAnnotation(annotation2)
         mapView.addAnnotation(annotation3)
         mapView.setRegion(region, animated: true)
         locationMgr.stopUpdatingLocation()
-        
-        
     }
-    //Början på zoom funktion
-    //Behöver göras om så att det går att zooma flera gånger
-
+    
+    //Simple zoom in and out function
     @IBAction func zoomIn(sender: UIButton) {
         let userLocation = mapView.userLocation
         
@@ -100,7 +92,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(region, animated: true)
     }
     
-  
     @IBAction func zoomOut(sender: UIButton) {
         let userLocation = mapView.userLocation
         
@@ -109,11 +100,5 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(region, animated: true)
         
     }
-    
-       
-    
-    
-    
-    
     
 }
